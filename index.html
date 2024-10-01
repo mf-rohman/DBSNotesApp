@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./src/css/styles.css" />
+    <script defer type="module" src="./main.js"></script>
+    <title>Note App</title>
+  </head>
+  <body>
+    <header>
+      <div class="grid-container">
+        <div class="img-logo">
+          <img src="./assets/img/note-logo.png" alt="logo" />
+          <h2>KIROKUSU</h2>
+        </div>
+        <search-bar></search-bar>
+        <div class="user-profile">
+          <span class="material-icons" id="person-icon">person</span>
+          <drop-down-menu>
+              <div slot="content">
+                  <ul>
+                    <li><a href="#">Note App</a></li>
+                    <li><a href="#my-profile">My Profile</a></li>
+                    <li><a href="#about-app">About App</a></li>
+                  </ul>
+              </div>
+          </drop-down-menu>
+        </div>
+      </div>
+    </header>
+    <main>
+        <div class="grid-container">
+            <section class="main-content" id="main-content">
+                <h1 class="content-title">Note App</h1>
+                <div class="note-list" id="note-list"></div>
+            </section>
+            <section class="my-profile" id="my-profile">
+
+            </section>
+        </div>
+    </main>
+    <footer>
+        <section class="about-app" id="about-app">
+            <h1>This Footer</h1>
+        </section>
+    </footer>
+  </body>
+</html>
