@@ -154,6 +154,7 @@ main .grid-container {
 .text-format-body {
   display:grid;
   grid-template-columns: 110px auto;
+  text-overflow:ellipsis;
 }
 .text-format-body::before {
   content: "Deskripsi ";
@@ -173,7 +174,6 @@ main .grid-container {
   font-weight: bold;
   padding-right: 0px;
 }
-
 
 @keyframes spin {
   0% {

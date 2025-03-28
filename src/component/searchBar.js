@@ -1,3 +1,6 @@
+import { notesData } from "../fetchData.js";
+import displayData from "../displayData.js";
+
 class SearchBar extends HTMLElement {
   constructor() {
     super();
@@ -50,10 +53,34 @@ class SearchBar extends HTMLElement {
                 }
             </style>
             <div class="search-bar-container">
-                <input type="search" placeholder="Search note . . .">
+                <input type="search" id="search" placeholder="Search note . . .">
                 <span class="material-icons">search</span>
             </div>
         `;
+        const searchNotesInput = this.shadowRoot.getElementById('search');
+        searchNotesInput.oninput = () => this.searchNote();
+  }
+  searchNote() {
+    const searchQuery = this.shadowRoot
+      .getElementById("search")
+      .value.toLowerCase();
+
+    const filteredNotes = notesData.filter((note) =>
+      note.title.toLowerCase().includes(searchQuery)
+    );
+
+    if (searchQuery === "") {
+      displayData(notesData);
+      return;
+    }
+
+    if (filteredNotes.length === 0) {
+      document.getElementById("note-list").innerHTML = `
+        <p>No one note can't found</p>
+        `;
+      return;
+    }
+    displayData(filteredNotes);
   }
 }
 
