@@ -10,56 +10,83 @@ class FormAddNote extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = `
             <style>
-                @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+                @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
                 .note-form {
                     display: grid;
                     justify-content: left;
                     margin: 20px;
-                    grid-template-columns: 1fr 1fr;
+                    grid-template-columns: 1fr 1fr auto;
                     gap: 1rem;
                     border: 1px solid #ccc;
                     border-radius: 5px;
-                    padding: 10px;
+                    padding: 20px;
                     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+                }
+                input[type="text"] {
+                  padding: 10px;
+                  gap: 2rem;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+                }
+                input:focus {
+                  border-color:rgb(240, 182, 143);
+                  outline: none;
+                  box-shadow: 0 0 10px rgb(243, 156, 57);
+                }
+                button {
+                  padding-top: 5px;
+                  position: absolute;
+                  background : unset;
+                  border: none;
+                  cursor: pointer;
+                }
+                .material-icons {
+                  font-size: 30px;
+                  border: none;
+                }
+                button .material-icons:hover {
+                  color: rgb(218, 108, 34);
+                  transform: scale(1.2);
                 }
             </style>
             <div class="note-form">
-                <form>
+                <form id="form-add-note">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" placeholder="Title" required>
                     <label for="description">Description</label>
-                    <input type="text-area" id="description" name="description" placeholder="Description" required>
-                    <button type="submit" id="btn-add-note"><i class="bi bi-plus-circle"></i></button>
+                    <input type="text" id="description" name="description" placeholder="Description" required>
+                    <button type="submit" id="btn-add-note">
+                      <span class="material-icons">add_box</span>
+                    </button>
                 </form>
             </div>
             
         `;
-        const btnAddNote = this.shadowRoot.getElementById("btn-add-note");
-        btnAddNote.addEventListener("click", (event) => {
-          event.preventDefault();
-          const title = this.shadowRoot.getElementById("title").value;
-          const body = this.shadowRoot.getElementById("description").value;
-          const timeStamp = new Date().toISOString();
-      
-          const newNote = { id: `notes-${Date.now()}`, title: title, body: body, createdAt: timeStamp, archived: false };
-          console.log(notesData)
-          notesData.push(newNote);
-          localStorage.setItem("notesData", JSON.stringify(notesData));
-          console.log(notesData);
-          displayData(notesData);
+    const btnAddNote = this.shadowRoot.getElementById("form-add-note");
+    btnAddNote.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!btnAddNote.checkValidity()) {
+        btnAddNote.reportValidity();
+        return;
+      }
 
-        } )
+      const title = this.shadowRoot.getElementById("title").value;
+      const body = this.shadowRoot.getElementById("description").value;
+      const timeStamp = new Date().toISOString();
+
+      const newNote = {
+        id: `notes-${Date.now()}`,
+        title: title,
+        body: body,
+        createdAt: timeStamp,
+        archived: false,
+      };
+
+      notesData.push(newNote);
+      localStorage.setItem("notesData", JSON.stringify(notesData));
+
+      displayData(notesData);
+    });
   }
-  //   addSubmitForm() {
-  //     const titleNote = document.getElementById("title").value;
-  //     const descriptionNote = document.getElementById("description").value;
-  //     const timeStamp = new Date().toISOString();
-  //     const newNote = { title: titleNote, body: descriptionNote, createdAt: timeStamp };
-  //     notesData.push(newNote);
-  //     console.log(newNote);
-  //     localStorage.setItem("notesData", JSON.stringify(notesData));
-  //     displayData(notesData);
-
-  //   }
 }
 customElements.define("form-add-note", FormAddNote);

@@ -1,21 +1,42 @@
 import { notesData } from "./fetchData.js";
 
+function editNote(index) {
+  const note = notesData[index];
 
-function editNote (index) {
-    const indexNoteList = notesData.findIndex((note, i) =>i ===index);
-    
-    if (indexNoteList !== -1) {
-        const note = notesData[indexNoteList];
+  if (note) {
+    const oldTitle = document.getElementById(`note-item-title[${note.id}]`);
+    const oldBody = document.getElementById(`note-item-body[${note.id}]`);
 
-        console.log(index);
-        document.getElementById("note-item-title").value = note.title;
-        document.getElementById("note-item-body").value = note.body;
+    oldTitle.setAttribute("contenteditable", "true");
+    oldTitle.setAttribute("spellcheck", "false");
+    oldTitle.onblur = () => {
+      note.title = oldTitle.textContent;
+      notesData[index] = note;
+      localStorage.setItem("notesData", JSON.stringify(notesData));
+      oldTitle.setAttribute("contenteditable", "false");
+      document.querySelector(".tooltip-text").style.display = "block";
+    };
 
-    }
-    document.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.getElementById("note-item-title").innerHTML = `<input type="text"></input>`
-    })
-    console.log(indexNoteList)
+    oldBody.setAttribute("contenteditable", "true");
+    oldBody.setAttribute("spellcheck", "false");
+    oldBody.onblur = () => {
+      note.body = oldBody.textContent;
+      notesData[index] = note;
+      localStorage.setItem("notesData", JSON.stringify(notesData));
+      oldBody.setAttribute("contenteditable", "false");
+      document.querySelector(".tooltip-text").style.display = "block";
+    };
+
+    oldTitle.onfocus = () => {
+      document.querySelector(".tooltip-text").style.display = "none";
+    };
+    oldBody.onfocus = () => {
+      document.querySelector(".tooltip-text").style.display = "none";
+    };
+
+    console.log(index);
+  }
 }
-export {editNote};
+
+export { editNote };
+

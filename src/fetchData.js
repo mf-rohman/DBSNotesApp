@@ -20,7 +20,6 @@ async function fetchData() {
     }
 
     displayData(notesData);
-    // return data;
   } catch (error) {
     console.log(error);
   }

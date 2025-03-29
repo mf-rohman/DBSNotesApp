@@ -11,7 +11,10 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 
     <link rel="stylesheet" href="./src/css/styles.css" />
     <script defer type="module" src="./main.js"></script>
@@ -28,33 +31,58 @@
         <div class="user-profile">
           <span class="material-icons" id="person-icon">person</span>
           <drop-down-menu>
-              <div slot="content">
-                  <ul>
-                    <li><a href="#">Note App</a></li>
-                    <li><a href="#my-profile">My Profile</a></li>
-                    <li><a href="#about-app">About App</a></li>
-                  </ul>
-              </div>
+            <div slot="content">
+              <ul>
+                <li><a href="#">Note App</a></li>
+                <li><a href="#my-profile">My Profile</a></li>
+                <li><a href="#about-app">About App</a></li>
+              </ul>
+            </div>
           </drop-down-menu>
         </div>
       </div>
     </header>
     <main>
-        <div class="grid-container">
-            <section class="main-content" id="main-content">
-                <h1 class="content-title">Note App</h1>
-                <form-add-note></form-add-note> 
-                <div class="note-list" id="note-list"></div>
-            </section>
-            <section class="my-profile" id="my-profile">
-
-            </section>
-        </div>
+      <div class="grid-container">
+        <section class="main-content" id="main-content">
+          <h1 class="content-title">Note App</h1>
+          <form-add-note></form-add-note>
+          <div class="note-list" id="note-list"></div>
+          <tooltip-text></tooltip-text>
+        </section>
+        <section class="my-profile" id="my-profile"></section>
+      </div>
     </main>
     <footer>
-        <section class="about-app" id="about-app">
-            <h1>This Footer</h1>
-        </section>
+      <div class="footer-container">
+        <div class="footer-info">
+          <h3>My Notes App</h3>
+          <p>Version 1.0 - Save your notes easily</p>
+        </div>
+        <div class="footer-contact">
+          <p>
+            Contact Us :
+            <a href="mf.rohman0101@gmail.com">mf.rohman0101@gmail.com</a>
+          </p>
+          <p>
+            Follow Us :
+            <a
+              href="https:www.linkedin.com/in/‎-miftahurrohman-717a12342"
+              target="_blank"
+              >linkedin</a
+            >
+            |
+            <a href="https://instagram.com/mf.en.er" target="_blank"
+              >Instagram</a
+            >
+          </p>
+        </div>
+        <div class="footer-copyright">
+          <p>
+            &copy; <span id="year"></span> My Notes App. All rights reserved.
+          </p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

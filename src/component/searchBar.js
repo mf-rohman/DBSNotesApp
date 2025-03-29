@@ -57,8 +57,8 @@ class SearchBar extends HTMLElement {
                 <span class="material-icons">search</span>
             </div>
         `;
-        const searchNotesInput = this.shadowRoot.getElementById('search');
-        searchNotesInput.oninput = () => this.searchNote();
+    const searchNotesInput = this.shadowRoot.getElementById("search");
+    searchNotesInput.oninput = () => this.searchNote();
   }
   searchNote() {
     const searchQuery = this.shadowRoot

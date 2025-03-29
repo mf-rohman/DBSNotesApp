@@ -5,42 +5,46 @@ import { editNote } from "./editNote.js";
 function displayData(notesData) {
   const noteList = document.getElementById("note-list");
   noteList.innerHTML = "";
-  //   console.log(noteList);
+
   if (!Array.isArray(notesData)) {
     console.log("not array");
   }
-//   console.log(notesData);
+
   notesData.forEach((note, index) => {
     const noteItem = document.createElement("div");
     noteItem.classList.add("note-item-list");
     noteItem.setAttribute("data-noteId", note.id);
-    // console.log(note);
 
     const noteTitle = document.createElement("h3");
     noteTitle.textContent = ` ${note.title}`;
-    noteTitle.id = 'note-item-title';
+    noteTitle.id = `note-item-title[${note.id}]`;
+    noteTitle.classList.add("text-format-title");
+    noteTitle.onclick = () => editNote(index);
+    noteTitle.setAttribute("data-tooltip", "Double Click to Edit");
 
     const noteBody = document.createElement("p");
-    noteBody.textContent = `: ${note.body} `;
+    noteBody.textContent = ` ${note.body} `;
     noteBody.classList.add("text-format-body");
-    noteBody.id = 'note-item-body';
+    noteBody.id = `note-item-body[${note.id}]`;
+    noteBody.setAttribute("data-tooltip", "Double Click to Edit");
 
     const noteDate = document.createElement("p");
-    noteDate.textContent = `: ${note.createdAt}`;
+    noteDate.textContent = ` ${note.createdAt}`;
     noteDate.classList.add("text-format-date");
 
+    noteBody.onclick = () => editNote(index);
+
     const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
     deleteButton.onclick = () => deleteNote(index);
     deleteButton.innerHTML = `<span class="material-icons">delete_forever</span>`;
 
     const editButton = document.createElement("button");
     editButton.onclick = () => editNote(index);
-    editButton.innerHTML = `<span class="material-icons">edit</span>`;
 
     noteItem.append(noteTitle, noteBody, noteDate, deleteButton, editButton);
 
-    noteList.append (noteItem);
-    // console.log(noteItem);
+    noteList.append(noteItem);
   });
 }
 
