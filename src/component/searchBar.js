@@ -1,5 +1,6 @@
-import { notesData } from "../fetchData.js";
+import { fetchData, notesData } from "../fetchData.js";
 import displayData from "../displayData.js";
+import { fetchLoading } from "../fetchLoading.js";
 
 class SearchBar extends HTMLElement {
   constructor() {
@@ -66,7 +67,7 @@ class SearchBar extends HTMLElement {
       .value.toLowerCase();
 
     const filteredNotes = notesData.filter((note) =>
-      note.title.toLowerCase().includes(searchQuery)
+      note.title.toLowerCase().includes(searchQuery),
     );
 
     if (searchQuery === "") {
@@ -83,5 +84,6 @@ class SearchBar extends HTMLElement {
     displayData(filteredNotes);
   }
 }
-
-customElements.define("search-bar", SearchBar);
+if (!customElements.get("search-bar")) {
+  customElements.define("search-bar", SearchBar);
+}

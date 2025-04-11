@@ -1,5 +1,5 @@
 import displayData from "../displayData.js";
-import { notesData } from "../fetchData.js";
+import { createNote, fetchData } from "../fetchData.js";
 
 class FormAddNote extends HTMLElement {
   constructor() {
@@ -62,31 +62,21 @@ class FormAddNote extends HTMLElement {
             </div>
             
         `;
-    const btnAddNote = this.shadowRoot.getElementById("form-add-note");
-    btnAddNote.addEventListener("click", (event) => {
+    const formAddNote = this.shadowRoot.getElementById("form-add-note");
+    formAddNote.addEventListener("submit", async (event) => {
       event.preventDefault();
-      if (!btnAddNote.checkValidity()) {
-        btnAddNote.reportValidity();
-        return;
-      }
-
       const title = this.shadowRoot.getElementById("title").value;
       const body = this.shadowRoot.getElementById("description").value;
-      const timeStamp = new Date().toISOString();
 
-      const newNote = {
-        id: `notes-${Date.now()}`,
-        title: title,
-        body: body,
-        createdAt: timeStamp,
-        archived: false,
-      };
+      const newNoteData = { title, body };
+      console.log("Data User:", newNoteData);
 
-      notesData.push(newNote);
-      localStorage.setItem("notesData", JSON.stringify(notesData));
-
-      displayData(notesData);
+      await createNote(newNoteData);
+      fetchData();
     });
   }
 }
-customElements.define("form-add-note", FormAddNote);
+
+if (!customElements.get("form-add-note")) {
+  customElements.define("form-add-note", FormAddNote);
+}

@@ -1,21 +1,16 @@
-import { fetchData, notesData, setNoteData } from "./fetchData.js";
+import { deleteNoteById, fetchData } from "./fetchData.js";
 import displayData from "./displayData.js";
-import { printNoteData } from "./fetchData.js";
 
-function deleteNote(index) {
-  let isConfirmDelete = window.confirm(
-    "Are you sure you want to delete this note?"
-  );
-  console.log(isConfirmDelete);
+export async function handleDeleteNote(noteId) {
+  const confirmDelete = confirm("Are you sure want to delete this note?");
+  if (!confirmDelete) {
+    return;
+  }
+  const result = await deleteNoteById(noteId);
 
-  if (isConfirmDelete) {
-    setNoteData(notesData.filter((note, i) => i !== index));
-
-    localStorage.setItem("notesData", JSON.stringify(notesData));
-    displayData(notesData);
-
-    console.log(`idx ${index}`);
+  if (result.status === "success") {
+    await fetchData();
+  } else {
+    alert("Failed" + result.message);
   }
 }
-
-export { deleteNote };

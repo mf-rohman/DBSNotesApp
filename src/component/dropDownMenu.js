@@ -46,21 +46,28 @@ class dropDownMenu extends HTMLElement {
                 </div>
             </div>
         `;
-        document.addEventListener("click", this.toggleDropdown.bind(this));
+    document.addEventListener("click", this.toggleDropdown.bind(this));
   }
   disconnectedCallback() {
     document.removeEventListener("click", this.toggleDropdown.bind(this));
   }
   toggleDropdown(event) {
-    const personIconBtn = document.querySelector('.user-profile span');
-    const isClicked = this.contains(event.target) || personIconBtn.contains(event.target);
-    
+    const personIconBtn = document.querySelector(".user-profile span");
+    const isClicked =
+      this.contains(event.target) || personIconBtn.contains(event.target);
+
     if (isClicked) {
-      this.shadowRoot.querySelector(".dropdown-content").classList.toggle("show");
-    }else{
-      this.shadowRoot.querySelector(".dropdown-content").classList.remove("show");
+      this.shadowRoot
+        .querySelector(".dropdown-content")
+        .classList.toggle("show");
+    } else {
+      this.shadowRoot
+        .querySelector(".dropdown-content")
+        .classList.remove("show");
     }
   }
-
 }
-customElements.define("drop-down-menu", dropDownMenu);
+
+if (!customElements.get("drop-down-menu")) {
+  customElements.define("drop-down-menu", dropDownMenu);
+}

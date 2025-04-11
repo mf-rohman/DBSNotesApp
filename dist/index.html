@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
       rel="stylesheet"
@@ -26,16 +26,16 @@
         </div>
         <search-bar></search-bar>
         <div class="user-profile">
-          <span class="material-icons" id="person-icon">person</span>
-          <drop-down-menu>
-            <div slot="content">
+          <span class="material-icons" id="person-icon">person</span
+          ><drop-down-menu
+            ><div slot="content">
               <ul>
                 <li><a href="#">Note App</a></li>
                 <li><a href="#my-profile">My Profile</a></li>
                 <li><a href="#about-app">About App</a></li>
               </ul>
-            </div>
-          </drop-down-menu>
+            </div></drop-down-menu
+          >
         </div>
       </div>
     </header>
@@ -47,28 +47,6 @@
           <div class="note-list" id="note-list"></div>
           <tooltip-text></tooltip-text>
         </section>
-        <div
-          class="fetch-page-loading"
-          id="fetch-page-loading"
-          style="display: block; text-align: center"
-        >
-          <div class="loading-circle" id="loading-circle"></div>
-          <h3 class="loader-text-container">
-            <span class="loader-span">L</span>
-            <span class="loader-span">O</span>
-            <span class="loader-span">A</span>
-            <span class="loader-span">D</span>
-            <span class="loader-span">I</span>
-            <span class="loader-span">N</span>
-            <span class="loader-span">G</span>
-            <span class="loader-span">&nbsp;</span>
-            <span class="loader-span">N</span>
-            <span class="loader-span">O</span>
-            <span class="loader-span">T</span>
-            <span class="loader-span">E</span>
-            <span class="loader-span">S</span>
-          </h3>
-        </div>
         <section class="my-profile" id="my-profile"></section>
       </div>
     </main>
@@ -76,7 +54,7 @@
       <div class="footer-container">
         <div class="footer-info">
           <h3>My Notes App</h3>
-          <p>Version 2.0 - Save your notes easily</p>
+          <p>Version 1.0 - Save your notes easily</p>
         </div>
         <div class="footer-contact">
           <p>
@@ -103,5 +81,6 @@
         </div>
       </div>
     </footer>
+    <script defer="defer" src="bundle.js"></script>
   </body>
 </html>

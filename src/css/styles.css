@@ -46,7 +46,9 @@ search-bar input {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
   opacity: 0;
   transform: translateX(-30px);
   animation: fadeInSlide 1s ease-out forwards;
@@ -125,14 +127,14 @@ main {
 
 main .grid-container {
   display: grid;
-  align-items :center;
+  align-items: center;
 }
- .main-content .content-title {
+.main-content .content-title {
   padding-left: 20px;
- }
+}
 
 .main-content .note-list {
-  display : grid;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin: 20px;
@@ -140,53 +142,55 @@ main .grid-container {
 .main-content .note-list > * {
   padding: 5px 15px;
   box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
-  border-radius:10px;
-  border: 1px solid #3333
-  
+  border-radius: 10px;
+  border: 1px solid #3333;
+}
+
+.loading-circle {
+  width: 40px;
+  height: 40px;
+  margin: 20px auto;
+  border: 5px solid #ccc;
+  border-top-color: #09f;
+  border-radius: 50%;
 }
 
 .note-list > .note-item-list {
   h3 {
-    color:salmon;
-    
+    color: salmon;
   }
   button {
-    border:none;
-    background:unset;
-    cursor:pointer;
+    border: none;
+    background: unset;
+    cursor: pointer;
   }
   line-height: 30px;
 }
 
 .text-format-body {
-  display:grid;
+  display: grid;
   grid-template-columns: 110px auto;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
-
 
 .text-format-body::before {
   content: "Deskripsi : ";
-  content : ""
-  text-align : right;
   font-weight: bold;
 }
 
 .text-format-date {
-  display:grid;
+  display: grid;
   grid-template-columns: 110px auto;
 }
 .text-format-date::before {
   content: "Time Stamp :";
-  content : ""
-  text-align : right;
   font-weight: bold;
   padding-right: 0px;
 }
 
 .tooltip-text {
   position: fixed;
-  background:rgba(8, 8, 8, 0.59);
+  background: rgba(8, 8, 8, 0.59);
   color: #ffffff;
   padding: 5px 10px;
   border-radius: 6px;
@@ -207,15 +211,16 @@ main .grid-container {
   transform: translateX(-50%);
   border-width: 5px;
   border-style: solid;
-  border-color: rgba(8, 8, 8, 0.59)transparent transparent transparent;
+  border-color: rgba(8, 8, 8, 0.59) transparent transparent transparent;
 }
 
 footer {
-  background-color:salmon;
+  background-color: salmon;
   color: white;
   padding: 20px;
   text-align: center;
   font-size: 14px;
+  margin-top: 14%;
 }
 
 .footer-container {
@@ -226,17 +231,37 @@ footer {
 }
 
 .footer-contact a {
-  color:rgb(82, 3, 3);
+  color: rgb(82, 3, 3);
   text-decoration: none;
 }
 
 .footer-contact a:hover {
   text-decoration: underline;
 }
-.delete-button:hover{
+.delete-button:hover {
   color: red;
 }
 
+.loader-text-container {
+  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  font-weight: bold;
+  font-size: 21px;
+  color: #ffffff;
+  background: linear-gradient(
+    130deg,
+    rgb(80, 138, 214),
+    rgb(233, 161, 195),
+    rgb(235, 117, 48),
+    #ffffff
+  );
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
+  background-size: 300% 300%;
+  animation: moveGradient 2s infinite linear;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

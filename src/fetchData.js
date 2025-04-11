@@ -1,37 +1,73 @@
 import displayData from "./displayData.js";
+import { CONFIG } from "./config.js";
+import { fetchLoading, stopLoading } from "./fetchLoading.js";
 
-let notesData = [];
-async function fetchData() {
-  const item = localStorage.getItem("notesData");
-
+let notesData;
+export async function fetchData() {
   try {
-    if (item && item != "[]") {
-      notesData = JSON.parse(localStorage.getItem("notesData"));
-    } else if (
-      localStorage.getItem("notesData") === "" ||
-      localStorage.getItem("notesData") === null ||
-      localStorage.getItem("notesData") === [] ||
-      localStorage.getItem("notesData") === "[]" ||
-      true
-    ) {
-      const response = await fetch("assets/data/notesData.json");
-      notesData = await response.json();
-      localStorage.setItem("notesData", JSON.stringify(notesData));
+    await fetchLoading();
+    const response = await fetch(CONFIG.API_BASE_URL + "/notes", {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      alert(`Error ${response.status}: ${response.statusText}`);
+      return null;
     }
 
+    const result = await response.json();
+    notesData = result.data;
+
+    console.log({ notesData });
     displayData(notesData);
+    console.info("info : ", fetchLoading());
+    return notesData;
   } catch (error) {
-    console.log(error);
+    alert("Error Get Notes : " + error.message);
+    console.error(error);
+  } finally {
+    stopLoading();
+    console.info(stopLoading());
   }
 }
 
-console.log(typeof localStorage.getItem("notesData"));
-console.log(localStorage.getItem("notesData") == "[]");
-function printNoteData() {
-  console.log(notesData);
+export async function createNote({ title, body }) {
+  try {
+    const response = await fetch(CONFIG.API_BASE_URL + "/notes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, body }),
+    });
+
+    if (!response.ok) {
+      alert(`Error ${response.status}: ${response.statusText}`);
+      return null;
+    }
+    const result = await response.json();
+    console.log("Result: ", result);
+
+    return result;
+  } catch (error) {
+    alert("Error Create Note : " + error.message);
+    console.error(error);
+  }
 }
 
-function setNoteData(data) {
-  notesData = data;
+export async function deleteNoteById(note_id) {
+  try {
+    const response = await fetch(CONFIG.API_BASE_URL + `/notes/${note_id}`, {
+      method: "DELETE",
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
-export { notesData, fetchData, printNoteData, setNoteData };
+
+export { notesData };

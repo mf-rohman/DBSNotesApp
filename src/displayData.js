@@ -1,16 +1,24 @@
-import { notesData } from "./fetchData.js";
-import { deleteNote } from "./deleteNote.js";
+// import { deleteButton } from "./deleteNote.js";
+import { handleDeleteNote } from "./deleteNote.js";
 import { editNote } from "./editNote.js";
+import { deleteNoteById, fetchData } from "./fetchData.js";
 
-function displayData(notesData) {
+function displayData(notes) {
   const noteList = document.getElementById("note-list");
   noteList.innerHTML = "";
 
-  if (!Array.isArray(notesData)) {
-    console.log("not array");
+  if (!Array.isArray(notes)) {
+    console.info("not array");
+    return;
   }
+  console.log(typeof notes);
+  console.log(notes);
+  notes.forEach((note, index) => {
+    if (!note || typeof note !== "object") {
+      console.warn(`Notes at Index ${index} not valid:`, note);
+      return;
+    }
 
-  notesData.forEach((note, index) => {
     const noteItem = document.createElement("div");
     noteItem.classList.add("note-item-list");
     noteItem.setAttribute("data-noteId", note.id);
@@ -21,6 +29,7 @@ function displayData(notesData) {
     noteTitle.classList.add("text-format-title");
     noteTitle.onclick = () => editNote(index);
     noteTitle.setAttribute("data-tooltip", "Double Click to Edit");
+    console.log("Indexxxx: ", index);
 
     const noteBody = document.createElement("p");
     noteBody.textContent = ` ${note.body} `;
@@ -36,15 +45,12 @@ function displayData(notesData) {
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
-    deleteButton.onclick = () => deleteNote(index);
+    deleteButton.onclick = () => handleDeleteNote(note.id);
     deleteButton.innerHTML = `<span class="material-icons">delete_forever</span>`;
 
-    const editButton = document.createElement("button");
-    editButton.onclick = () => editNote(index);
+    noteItem.append(noteTitle, noteBody, noteDate, deleteButton);
 
-    noteItem.append(noteTitle, noteBody, noteDate, deleteButton, editButton);
-
-    noteList.append(noteItem);
+    noteList.insertBefore(noteItem, noteList.firstChild);
   });
 }
 
