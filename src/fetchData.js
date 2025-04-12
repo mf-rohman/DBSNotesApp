@@ -42,12 +42,12 @@ export async function createNote({ title, body }) {
       body: JSON.stringify({ title, body }),
     });
 
-    addNoteAnimation();
     if (!response.ok) {
       alert(`Error ${response.status}: ${response.statusText}`);
       return null;
     }
     const result = await response.json();
+    // addNoteAnimation();
     console.log("Result: ", result);
 
     return result;

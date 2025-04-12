@@ -50,7 +50,6 @@ function displayData(notes) {
     deleteButton.innerHTML = `<span class="material-icons">delete_forever</span>`;
 
     noteItem.append(noteTitle, noteBody, noteDate, deleteButton);
-
     noteList.insertBefore(noteItem, noteList.firstChild);
     addNoteAnimation();
   });

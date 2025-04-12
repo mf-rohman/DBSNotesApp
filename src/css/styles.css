@@ -135,7 +135,7 @@ main .grid-container {
 
 .main-content .note-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   margin: 20px;
 }
@@ -165,6 +165,7 @@ main .grid-container {
     cursor: pointer;
   }
   line-height: 30px;
+  /* margin-right: 17rem; */
 }
 
 .text-format-body {
