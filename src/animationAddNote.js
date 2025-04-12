@@ -1,10 +1,14 @@
-import { animate } from "animejs";
+import { animate, stagger } from "animejs";
 
 export function addNoteAnimation() {
-  animate(".note-item-list", {
-    opacity: [{ from: 0, to: 1 }],
-    y: [{ from: 20, to: 0 }],
-    duration: 1000,
-    ease: "easeOutQuad",
+  animate('.note-item-list', {
+   x: [
+    {from: '-17rem'},
+    // {to: '17rem'},
+   ],
+   delay: stagger(200),
+   duration: stagger(300, {start: 500}),
+  //  loop: 1,
+  //  alternate: true
   });
 }

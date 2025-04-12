@@ -1,4 +1,5 @@
 // import { deleteButton } from "./deleteNote.js";
+import { addNoteAnimation } from "./animationAddNote.js";
 import { handleDeleteNote } from "./deleteNote.js";
 import { editNote } from "./editNote.js";
 import { deleteNoteById, fetchData } from "./fetchData.js";
@@ -51,6 +52,7 @@ function displayData(notes) {
     noteItem.append(noteTitle, noteBody, noteDate, deleteButton);
 
     noteList.insertBefore(noteItem, noteList.firstChild);
+    addNoteAnimation();
   });
 }
 

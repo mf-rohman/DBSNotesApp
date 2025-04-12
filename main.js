@@ -7,7 +7,7 @@ import displayData from "./src/displayData.js";
 import { fetchData, createNote, deleteNoteById } from "./src/fetchData.js";
 import { editNote } from "./src/editNote.js";
 import { animate } from "animejs";
-import { addNoteAnimation } from "./src/animationAddNote.js";
+// import { addNoteAnimation } from "./src/animationAddNote.js";
 import { fetchLoading } from "./src/fetchLoading.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loopDelay: 500,
     loop: true,
   });
-  addNoteAnimation();
   fetchLoading();
   fetchData();
 });

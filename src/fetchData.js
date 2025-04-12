@@ -1,6 +1,7 @@
 import displayData from "./displayData.js";
 import { CONFIG } from "./config.js";
 import { fetchLoading, stopLoading } from "./fetchLoading.js";
+import { addNoteAnimation } from "./animationAddNote.js";
 
 let notesData;
 export async function fetchData() {
@@ -41,6 +42,7 @@ export async function createNote({ title, body }) {
       body: JSON.stringify({ title, body }),
     });
 
+    addNoteAnimation();
     if (!response.ok) {
       alert(`Error ${response.status}: ${response.statusText}`);
       return null;
