@@ -12,7 +12,7 @@ export function fetchLoading() {
   circleLoading = animate("#loading-circle", {
     rotate: "1turn",
     ease: "linier",
-    duration: 3300,
+    duration: 2400,
     loop: 1,
   });
   // textLoadingAnimation();

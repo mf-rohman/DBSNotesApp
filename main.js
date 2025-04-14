@@ -4,13 +4,20 @@ import "./src/component/formAddNote.js";
 import "./src/component/tooltipText.js";
 import * as css from "./src/css/styles.css";
 import displayData from "./src/displayData.js";
-import { fetchData, createNote, deleteNoteById } from "./src/fetchData.js";
+import {
+  fetchData,
+  createNote,
+  deleteNoteById,
+  getArchivedNote,
+} from "./src/fetchData.js";
 import { editNote } from "./src/editNote.js";
 import { animate } from "animejs";
-// import { addNoteAnimation } from "./src/animationAddNote.js";
 import { fetchLoading } from "./src/fetchLoading.js";
+import { renderAllNotesData } from "./src/renderAllNotes.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+// import { addNoteAnimation } from "./src/animationAddNote.js";
+
+document.addEventListener("DOMContentLoaded", async function () {
   animate(".loader-span", {
     x: [
       { to: "-2.75rem", ease: "outExpo", duration: 600 },
@@ -25,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loopDelay: 500,
     loop: true,
   });
-  fetchLoading();
-  fetchData();
+  await fetchLoading();
+  renderAllNotesData();
 });
+
+

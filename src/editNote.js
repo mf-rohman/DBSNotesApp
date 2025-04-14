@@ -1,3 +1,5 @@
+import { allNotes, renderAllNotesData } from "./renderAllNotes.js";
+import { stopAddNoteAnimation } from "./animationAddNote.js";
 import {
   createNote,
   deleteNoteById,
@@ -6,8 +8,8 @@ import {
 } from "./fetchData.js";
 
 function editNote(index) {
-  const note = notesData[index];
-  console.log("note: ", note);
+  const note = allNotes[index];
+  console.log(" note: ", note);
 
   if (note) {
     const oldTitle = document.getElementById(`note-item-title[${note.id}]`);
@@ -15,16 +17,16 @@ function editNote(index) {
 
     oldTitle.setAttribute("contenteditable", "true");
     oldTitle.setAttribute("spellcheck", "false");
+
     oldTitle.onblur = () => {
       note.title = oldTitle.textContent;
-      notesData[index] = note;
-      localStorage.setItem("notesData", JSON.stringify(notesData));
-      console.log("APaapapap:  ", notesData);
+      allNotes[index] = note;
+      console.log("APaapapap:  ", allNotes);
 
       const newNotesData = { title: note.title, body: oldBody.textContent };
       createNote(newNotesData);
       deleteNoteById(note.id);
-      fetchData();
+      renderAllNotesData();
 
       oldTitle.setAttribute("contenteditable", "false");
       document.querySelector(".tooltip-text").style.display = "block";
@@ -32,15 +34,15 @@ function editNote(index) {
 
     oldBody.setAttribute("contenteditable", "true");
     oldBody.setAttribute("spellcheck", "false");
+
     oldBody.onblur = () => {
       note.body = oldBody.textContent;
       notesData[index] = note;
-      localStorage.setItem("notesData", JSON.stringify(notesData));
 
       const newBody = { body: note.body, title: oldTitle.textContent };
       createNote(newBody);
       deleteNoteById(note.id);
-      fetchData();
+      renderAllNotesData();
 
       oldBody.setAttribute("contenteditable", "false");
       document.querySelector(".tooltip-text").style.display = "block";

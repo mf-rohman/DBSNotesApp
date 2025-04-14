@@ -133,17 +133,28 @@ main .grid-container {
   padding-left: 20px;
 }
 
+.container-notes-list {
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #3333;
+  padding: 15px;
+  margin: 20px;
+}
 .main-content .note-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  max-width: 1200px;
   gap: 1rem;
   margin: 20px;
 }
+
+
 .main-content .note-list > * {
   padding: 5px 15px;
   box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   border: 1px solid #3333;
+  text-wrap: wrap;
 }
 
 .loading-circle {
@@ -164,8 +175,40 @@ main .grid-container {
     background: unset;
     cursor: pointer;
   }
+  /* z-index: 0 !important; */
   line-height: 30px;
-  /* margin-right: 17rem; */
+
+}
+
+.archived-note-container {
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #3333;
+  padding: 15px;
+  margin: 20px;
+}
+
+.note-archive {
+  display:  grid !important;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 20px;
+  h3 {
+    color: salmon;
+  }
+  button {
+    border: none;
+    background: unset;
+    cursor: pointer;
+  }
+  line-height: 30px;
+
+}
+.note-archive > * {
+  padding: 5px 15px;
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #3333;
 }
 
 .text-format-body {
@@ -241,6 +284,12 @@ footer {
 }
 .delete-button:hover {
   color: red;
+}
+.archive-button:hover {
+  color: rgb(238, 116, 16);
+}
+.unarchive-button:hover {
+  color: rgb(3, 138, 14);
 }
 
 .loader-text-container {

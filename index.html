@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -44,8 +44,15 @@
         <section class="main-content" id="main-content">
           <h1 class="content-title">Note App</h1>
           <form-add-note></form-add-note>
-          <div class="note-list" id="note-list"></div>
+          <div class="container-notes-list">
+            <h2>Notes List</h2>
+            <div class="note-list" id="note-list"></div>
+          </div>
           <tooltip-text></tooltip-text>
+        </section>
+        <section class="archived-note-container">
+          <h2 class="content-title">Notes Archived</h2>
+          <div class="note-archive" id="note-archive"></div>
         </section>
         <div
           class="fetch-page-loading"

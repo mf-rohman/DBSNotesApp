@@ -1,3 +1,4 @@
+import { renderAllNotesData } from "../renderAllNotes.js";
 import displayData from "../displayData.js";
 import { createNote, fetchData } from "../fetchData.js";
 
@@ -72,7 +73,7 @@ class FormAddNote extends HTMLElement {
       console.log("Data User:", newNoteData);
 
       await createNote(newNoteData);
-      fetchData();
+      renderAllNotesData();
     });
   }
 }

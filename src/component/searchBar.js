@@ -1,6 +1,7 @@
-import { fetchData, notesData } from "../fetchData.js";
-import displayData from "../displayData.js";
-import { fetchLoading } from "../fetchLoading.js";
+// import { fetchData, notesData } from "../fetchData.js";
+// import displayData from "../displayData.js";
+// import { fetchLoading } from "../fetchLoading.js";
+import { allNotes, renderAllNotesData } from "../renderAllNotes.js";
 
 class SearchBar extends HTMLElement {
   constructor() {
@@ -66,12 +67,12 @@ class SearchBar extends HTMLElement {
       .getElementById("search")
       .value.toLowerCase();
 
-    const filteredNotes = notesData.filter((note) =>
+    const filteredNotes = allNotes.filter((note) =>
       note.title.toLowerCase().includes(searchQuery),
     );
 
     if (searchQuery === "") {
-      displayData(notesData);
+      renderAllNotesData();
       return;
     }
 
@@ -81,7 +82,7 @@ class SearchBar extends HTMLElement {
         `;
       return;
     }
-    displayData(filteredNotes);
+    // renderAllNotesData();
   }
 }
 if (!customElements.get("search-bar")) {
