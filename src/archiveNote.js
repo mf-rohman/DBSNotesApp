@@ -10,7 +10,7 @@ export async function hnadleArchiveNote(note_id) {
   const result = await archiveNote(note_id);
 
   if (result.status === "success") {
-    renderAllNotesData();
+    renderAllNotesData(true);
   } else {
     alert("Failed " + result.message);
   }

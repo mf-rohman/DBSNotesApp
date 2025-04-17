@@ -1,9 +1,9 @@
-## My Notes App 2.0
+# My Notes App 2.0
 This app for submission for **Course Web Dev Fundamental** 
 
 ## Fitur
 - Add New Notes
-- Edit Notes in Archived or Unarchived notes (but still there is bug)
+- Edit Notes in Archived or Unarchived notes (but there is still have a bug)
 - Delete Notes
 - Archived and UnArchived Notes
 
@@ -13,6 +13,15 @@ This app for submission for **Course Web Dev Fundamental**
 - I made infinite loop animation for apps logo
 - I use animejs library to make animation while fetch data
 - I use animejs library to make animation of card note when update note 
+- I use animejs library to make animation of card note dragable 
+<br>
+<br>
+<br>
 
-## Miftahurrohman FC-38
+
+
+
+
+
+###### <center> @copyright Miftahurrohman FC-38</center>
 

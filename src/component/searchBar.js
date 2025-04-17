@@ -68,15 +68,15 @@ class SearchBar extends HTMLElement {
       .value.toLowerCase();
 
     const filteredNotes = allNotes.filter((note) =>
-      note.title.toLowerCase().includes(searchQuery),
+      note.title.toLowerCase().includes(searchQuery)
     );
 
     if (searchQuery === "") {
-      renderAllNotesData();
+      renderAllNotesData(true);
       return;
     }
 
-    if (filteredNotes.length === 0) {
+    if (filteredNotes !== searchQuery) {
       document.getElementById("note-list").innerHTML = `
         <p>No one note can't found</p>
         `;

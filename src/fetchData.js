@@ -1,15 +1,16 @@
 import displayData from "./displayData.js";
 import { CONFIG } from "./config.js";
 import { fetchLoading, stopLoading } from "./fetchLoading.js";
-import { addNoteAnimation } from "./animationAddNote.js";
 
 let notesData;
-export async function fetchData() {
+export async function fetchData(enable = false) {
   try {
+    if (!enable) {
+      await fetchLoading();
+    }
     const response = await fetch(CONFIG.API_BASE_URL + "/notes", {
       method: "GET",
     });
-
     if (!response.ok) {
       alert(`Error Get All Note : ${response.statusText}`);
       return null;
@@ -18,20 +19,20 @@ export async function fetchData() {
     const result = await response.json();
     notesData = result.data;
 
-    // console.log({ notesData });
-
     return notesData;
   } catch (error) {
     alert("Error Get All Notes : " + error.message);
     console.error(error);
   } finally {
-    stopLoading();
-    console.info(stopLoading());
+    if (!enable) {
+      stopLoading();
+    }
   }
 }
 
 export async function createNote({ title, body }) {
   try {
+    await fetchLoading();
     const response = await fetch(CONFIG.API_BASE_URL + "/notes", {
       method: "POST",
       headers: {
@@ -45,18 +46,20 @@ export async function createNote({ title, body }) {
       return null;
     }
     const result = await response.json();
-    // addNoteAnimation();
     console.log("Result: ", result);
 
     return result;
   } catch (error) {
     alert("Error Create Note : " + error.message);
     console.error(error);
+  } finally {
+    stopLoading();
   }
 }
 
 export async function deleteNoteById(note_id) {
   try {
+    await fetchLoading();
     const response = await fetch(CONFIG.API_BASE_URL + `/notes/${note_id}`, {
       method: "DELETE",
     });
@@ -66,12 +69,16 @@ export async function deleteNoteById(note_id) {
 
     return result;
   } catch (error) {
+    alert("Error When Delete Notes : " + error.message);
     console.error(error);
+  } finally {
+    stopLoading();
   }
 }
 
 export async function archiveNote(note_id) {
   try {
+    await fetchLoading();
     const response = await fetch(
       CONFIG.API_BASE_URL + `/notes/${note_id}/archive`,
       {
@@ -88,11 +95,19 @@ export async function archiveNote(note_id) {
     console.log("fhwuiofhweioufhbweoi:", result);
 
     return result;
-  } catch {}
+  } catch (error) {
+    alert("Error Archived Notes : " + error.message);
+    console.error(error);
+  } finally {
+    stopLoading();
+  }
 }
 
-export async function getArchivedNote() {
+export async function getArchivedNote(enable = false) {
   try {
+    if (!enable) {
+      await fetchLoading();
+    }
     const response = await fetch(CONFIG.API_BASE_URL + `/notes/archived`, {
       method: "GET",
     });
@@ -105,17 +120,19 @@ export async function getArchivedNote() {
     const result = await response.json();
     notesData = result.data;
     console.log("archived NOte: ", { notesData });
-    // displayData(notesData);
 
     return notesData;
   } catch (error) {
     alert("Error Get Archived Notes : " + error.message);
     console.error(error);
+  } finally {
+    stopLoading();
   }
 }
 
 export async function unArchivedNotes(note_id) {
   try {
+    await fetchLoading();
     const response = await fetch(
       CONFIG.API_BASE_URL + `/notes/${note_id}/unarchive`,
       {
@@ -135,6 +152,8 @@ export async function unArchivedNotes(note_id) {
   } catch (error) {
     console.error(error);
     alert("Error While unArchive Note:", error);
+  } finally {
+    stopLoading();
   }
 }
 

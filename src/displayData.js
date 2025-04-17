@@ -1,7 +1,6 @@
-// import { deleteButton } from "./deleteNote.js";
 import {
   stopAnimationDragable,
-  animationDragable
+  animationDragable,
 } from "./animationAddNote.js";
 import { hnadleArchiveNote } from "./archiveNote.js";
 import { handleDeleteNote } from "./deleteNote.js";

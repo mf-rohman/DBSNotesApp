@@ -1,5 +1,4 @@
 import { allNotes, renderAllNotesData } from "./renderAllNotes.js";
-import { stopAddNoteAnimation } from "./animationAddNote.js";
 import {
   createNote,
   deleteNoteById,

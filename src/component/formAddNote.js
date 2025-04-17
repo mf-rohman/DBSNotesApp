@@ -73,7 +73,7 @@ class FormAddNote extends HTMLElement {
       console.log("Data User:", newNoteData);
 
       await createNote(newNoteData);
-      renderAllNotesData();
+      renderAllNotesData(true);
     });
   }
 }
